@@ -19,7 +19,9 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 
 Subscribe to see which companies asked this question
     */
-	
+	/*
+	 * 方案一，维护一个hasmap和两个指针（开始指针和结束指针）
+	 */
 	public static  int lengthOfLongestSubstring(String s){
 		if (s.length()==0) {
 			return 0;
@@ -37,7 +39,10 @@ Subscribe to see which companies asked this question
 		
 		return max;
 	}
-	
+	/*
+	 * 滑动窗口模型
+	 * 维护[i,j)
+	 */
 	public static int lengthOfLongestSubstringTwo(String s){
 		int n = s.length();
 		Set<Character> set = new HashSet<>();
