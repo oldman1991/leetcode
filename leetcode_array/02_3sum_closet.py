@@ -44,3 +44,49 @@ def three_sum_closet(nums, target):
             else:
                 j += 1
     return result
+
+def threeSum(nums):
+    if len(nums) < 3:
+        return []
+    nums.sort()
+    res = set()
+    for i, v in enumerate(nums[:-2]):
+        if i >= 1 and v == nums[i - 1]:
+            continue
+        d = {}
+        for x in nums[i + 1:]:
+            if x not in d:
+                d[-v - x] = 1
+            else:
+                res.add((v, -v - x, x))
+    return map(list, res)
+
+
+a = [-1, 0, 1, -4]
+res = threeSum(a)
+print([x for x in res])
+
+
+def threeSum02(nums):
+    """
+    双指针解题
+    :param nums:
+    :return:
+    """
+    res = []
+    nums.sort()
+    for i in range(len(nums)-2):
+        if i >0 and nums[i] == nums[i-1]:
+            continue
+        l, r = i+1, len(nums)-1
+        while l<r:
+            s = nums[i] + nums[l] + nums[r]
+            if s<0: l+=1
+            elif s >0: r+=1
+            else:
+                res.append(nums[i], nums[l], nums[r])
+                while l<r and nums[i] == nums[i+1]:
+                    l +=1
+                while l<r and nums[r] == nums[r-1]:
+                    r -= 1
+                l+=1; r-=1
